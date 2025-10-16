@@ -57,6 +57,13 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        positive: "hsl(var(--positive))",
+        negative: "hsl(var(--negative))",
+        neutral: "hsl(var(--neutral))",
+        "table-row-even": "hsl(var(--table-row-even))",
+        "table-row-odd": "hsl(var(--table-row-odd))",
+        "table-row-hover": "hsl(var(--table-row-hover))",
+        "table-row-selected": "hsl(var(--table-row-selected))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -80,10 +87,39 @@ export default {
             height: "0",
           },
         },
+        "flash-positive": {
+          "0%": {
+            backgroundColor: "hsla(var(--highlight-positive), 0.25)",
+          },
+          "100%": {
+            backgroundColor: "transparent",
+          },
+        },
+        "flash-negative": {
+          "0%": {
+            backgroundColor: "hsla(var(--highlight-negative), 0.25)",
+          },
+          "100%": {
+            backgroundColor: "transparent",
+          },
+        },
+        "glow-new": {
+          "0%": {
+            backgroundColor: "hsla(var(--highlight-new), 0.2)",
+            boxShadow: "0 0 20px hsla(var(--highlight-new), 0.3)",
+          },
+          "100%": {
+            backgroundColor: "transparent",
+            boxShadow: "none",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "flash-positive": "flash-positive 1s ease-out",
+        "flash-negative": "flash-negative 1s ease-out",
+        "glow-new": "glow-new 1.2s ease-out",
       },
     },
   },
