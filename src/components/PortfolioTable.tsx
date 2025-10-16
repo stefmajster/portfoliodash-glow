@@ -114,39 +114,53 @@ const getValueColorClass = (value: number) => {
 export const PortfolioTable = () => {
   const [data, setData] = useState<PositionData[]>(mockData);
 
-  // Simulate live updates
+  // Simulate live updates - multiple cells at once
   useEffect(() => {
     const interval = setInterval(() => {
       setData((prevData) => {
         const newData = [...prevData];
-        const randomIndex = Math.floor(Math.random() * newData.length);
-        const item = { ...newData[randomIndex] };
         
-        // Randomly update a numeric field
-        const fields = ["marketValue", "exposure", "pnlDtd", "pnlMtd", "pnlYtd"];
-        const randomField = fields[Math.floor(Math.random() * fields.length)];
-        const oldValue = item[randomField as keyof PositionData] as number;
-        const change = (Math.random() - 0.5) * oldValue * 0.05; // ±5% change
-        const newValue = oldValue + change;
+        // Update 3-4 random cells at once
+        const numUpdates = 3 + Math.floor(Math.random() * 2); // 3 or 4 updates
+        const updatedIds = new Set<string>();
         
-        item[randomField as keyof PositionData] = newValue as never;
-        item.flashField = randomField;
-        item.flashType = change > 0 ? "positive" : "negative";
-        
-        newData[randomIndex] = item;
+        for (let i = 0; i < numUpdates && updatedIds.size < newData.length; i++) {
+          let randomIndex = Math.floor(Math.random() * newData.length);
+          
+          // Make sure we don't update the same row twice in one cycle
+          while (updatedIds.has(newData[randomIndex].id)) {
+            randomIndex = Math.floor(Math.random() * newData.length);
+          }
+          
+          const item = { ...newData[randomIndex] };
+          updatedIds.add(item.id);
+          
+          // Randomly update a numeric field
+          const fields = ["marketValue", "exposure", "pnlDtd", "pnlMtd", "pnlYtd"];
+          const randomField = fields[Math.floor(Math.random() * fields.length)];
+          const oldValue = item[randomField as keyof PositionData] as number;
+          const change = (Math.random() - 0.5) * oldValue * 0.08; // ±8% change for more visibility
+          const newValue = oldValue + change;
+          
+          item[randomField as keyof PositionData] = newValue as never;
+          item.flashField = randomField;
+          item.flashType = change > 0 ? "positive" : "negative";
+          
+          newData[randomIndex] = item;
+        }
         
         // Clear flash after animation
         setTimeout(() => {
           setData((currentData) =>
             currentData.map((d) =>
-              d.id === item.id ? { ...d, flashField: undefined, flashType: undefined } : d
+              updatedIds.has(d.id) ? { ...d, flashField: undefined, flashType: undefined } : d
             )
           );
         }, 1000);
         
         return newData;
       });
-    }, 3000);
+    }, 1200); // Update every 1.2 seconds instead of 3
 
     return () => clearInterval(interval);
   }, []);
