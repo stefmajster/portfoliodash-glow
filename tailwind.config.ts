@@ -89,7 +89,7 @@ export default {
         },
         "flash-positive": {
           "0%": {
-            backgroundColor: "hsla(var(--highlight-positive), 0.25)",
+            backgroundColor: "rgba(57, 255, 136, 0.35)",
           },
           "100%": {
             backgroundColor: "transparent",
@@ -97,7 +97,7 @@ export default {
         },
         "flash-negative": {
           "0%": {
-            backgroundColor: "hsla(var(--highlight-negative), 0.25)",
+            backgroundColor: "rgba(255, 107, 107, 0.35)",
           },
           "100%": {
             backgroundColor: "transparent",
@@ -105,8 +105,8 @@ export default {
         },
         "glow-new": {
           "0%": {
-            backgroundColor: "hsla(var(--highlight-new), 0.2)",
-            boxShadow: "0 0 20px hsla(var(--highlight-new), 0.3)",
+            backgroundColor: "rgba(62, 149, 205, 0.25)",
+            boxShadow: "0 0 20px rgba(62, 149, 205, 0.4)",
           },
           "100%": {
             backgroundColor: "transparent",
