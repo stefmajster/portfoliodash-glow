@@ -7,6 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 interface PositionData {
   id: string;
@@ -206,38 +207,38 @@ export const PortfolioTable = () => {
   };
 
   return (
-    <div className="w-full overflow-auto rounded-md border border-border">
-      <Table>
+    <ScrollArea className="w-full rounded-md border border-border">
+      <Table className="min-w-max">
         <TableHeader>
           <TableRow className="border-b border-border hover:bg-transparent">
-            <TableHead className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <TableHead className="whitespace-nowrap text-xs font-semibold uppercase tracking-wider text-muted-foreground min-w-[150px]">
               Instrument
             </TableHead>
-            <TableHead className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <TableHead className="whitespace-nowrap text-xs font-semibold uppercase tracking-wider text-muted-foreground min-w-[180px]">
               Entity
             </TableHead>
-            <TableHead className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <TableHead className="whitespace-nowrap text-xs font-semibold uppercase tracking-wider text-muted-foreground min-w-[120px]">
               Row ID
             </TableHead>
-            <TableHead className="text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <TableHead className="whitespace-nowrap text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground min-w-[160px]">
               Market Value (BASE)
             </TableHead>
-            <TableHead className="text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <TableHead className="whitespace-nowrap text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground min-w-[180px]">
               Exposure (NET BASE)
             </TableHead>
-            <TableHead className="text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <TableHead className="whitespace-nowrap text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground min-w-[150px]">
               Exp Weight (NET %)
             </TableHead>
-            <TableHead className="text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <TableHead className="whitespace-nowrap text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground min-w-[150px]">
               P&L - DTD (BASE)
             </TableHead>
-            <TableHead className="text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <TableHead className="whitespace-nowrap text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground min-w-[150px]">
               P&L - MTD (BASE)
             </TableHead>
-            <TableHead className="text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <TableHead className="whitespace-nowrap text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground min-w-[150px]">
               P&L - YTD (BASE)
             </TableHead>
-            <TableHead className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <TableHead className="whitespace-nowrap text-xs font-semibold uppercase tracking-wider text-muted-foreground min-w-[160px]">
               Portfolio
             </TableHead>
           </TableRow>
@@ -253,17 +254,17 @@ export const PortfolioTable = () => {
                 ${item.isNew ? "animate-glow-new" : ""}
               `}
             >
-              <TableCell className="font-mono text-sm text-foreground">
+              <TableCell className="whitespace-nowrap font-mono text-sm text-foreground max-w-[150px] truncate">
                 {item.instrument}
               </TableCell>
-              <TableCell className="text-sm text-muted-foreground">
+              <TableCell className="whitespace-nowrap text-sm text-muted-foreground max-w-[180px] truncate">
                 {item.entity}
               </TableCell>
-              <TableCell className="font-mono text-xs text-muted-foreground">
+              <TableCell className="whitespace-nowrap font-mono text-xs text-muted-foreground">
                 {item.rowId}
               </TableCell>
               <TableCell
-                className={`text-right font-mono text-sm tabular-nums ${getCellAnimation(
+                className={`whitespace-nowrap text-right font-mono text-sm tabular-nums ${getCellAnimation(
                   item,
                   "marketValue"
                 )}`}
@@ -271,7 +272,7 @@ export const PortfolioTable = () => {
                 {formatCurrency(item.marketValue)}
               </TableCell>
               <TableCell
-                className={`text-right font-mono text-sm tabular-nums ${getCellAnimation(
+                className={`whitespace-nowrap text-right font-mono text-sm tabular-nums ${getCellAnimation(
                   item,
                   "exposure"
                 )}`}
@@ -279,7 +280,7 @@ export const PortfolioTable = () => {
                 {formatCurrency(item.exposure)}
               </TableCell>
               <TableCell
-                className={`text-right font-mono text-sm tabular-nums ${getCellAnimation(
+                className={`whitespace-nowrap text-right font-mono text-sm tabular-nums ${getCellAnimation(
                   item,
                   "expWeight"
                 )}`}
@@ -287,33 +288,34 @@ export const PortfolioTable = () => {
                 {formatPercent(item.expWeight)}
               </TableCell>
               <TableCell
-                className={`text-right font-mono text-sm tabular-nums ${getValueColorClass(
+                className={`whitespace-nowrap text-right font-mono text-sm tabular-nums ${getValueColorClass(
                   item.pnlDtd
                 )} ${getCellAnimation(item, "pnlDtd")}`}
               >
                 {formatCurrency(item.pnlDtd)}
               </TableCell>
               <TableCell
-                className={`text-right font-mono text-sm tabular-nums ${getValueColorClass(
+                className={`whitespace-nowrap text-right font-mono text-sm tabular-nums ${getValueColorClass(
                   item.pnlMtd
                 )} ${getCellAnimation(item, "pnlMtd")}`}
               >
                 {formatCurrency(item.pnlMtd)}
               </TableCell>
               <TableCell
-                className={`text-right font-mono text-sm tabular-nums ${getValueColorClass(
+                className={`whitespace-nowrap text-right font-mono text-sm tabular-nums ${getValueColorClass(
                   item.pnlYtd
                 )} ${getCellAnimation(item, "pnlYtd")}`}
               >
                 {formatCurrency(item.pnlYtd)}
               </TableCell>
-              <TableCell className="text-sm text-muted-foreground">
+              <TableCell className="whitespace-nowrap text-sm text-muted-foreground max-w-[160px] truncate">
                 {item.portfolio}
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-    </div>
+      <ScrollBar orientation="horizontal" />
+    </ScrollArea>
   );
 };
