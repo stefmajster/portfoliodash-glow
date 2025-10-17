@@ -89,7 +89,7 @@ export default {
         },
         "flash-positive": {
           "0%": {
-            backgroundColor: "rgba(57, 255, 136, 0.35)",
+            backgroundColor: "rgba(0, 170, 96, 0.35)",
           },
           "100%": {
             backgroundColor: "transparent",
@@ -97,7 +97,7 @@ export default {
         },
         "flash-negative": {
           "0%": {
-            backgroundColor: "rgba(255, 107, 107, 0.35)",
+            backgroundColor: "rgba(243, 52, 48, 0.35)",
           },
           "100%": {
             backgroundColor: "transparent",
