@@ -2,7 +2,7 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/16159dc0-9c28-4094-a54a-91014e15d220
+**URL**: https://portfoliodash-glow.lovable.app/ 
 
 ## How can I edit this code?
 
