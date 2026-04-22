@@ -8,6 +8,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 
 interface PositionData {
   id: string;
