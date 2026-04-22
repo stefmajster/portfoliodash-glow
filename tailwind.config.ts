@@ -105,8 +105,8 @@ export default {
         },
         "glow-new": {
           "0%": {
-            backgroundColor: "rgba(62, 149, 205, 0.25)",
-            boxShadow: "0 0 20px rgba(62, 149, 205, 0.4)",
+            backgroundColor: "rgba(15, 43, 76, 0.85)",
+            boxShadow: "0 0 20px rgba(15, 43, 76, 0.6)",
           },
           "100%": {
             backgroundColor: "transparent",
