@@ -224,8 +224,15 @@ export const PortfolioTable = () => {
   };
 
   return (
-    <ScrollArea className="w-full rounded-md border border-border">
-      <Table className="min-w-max">
+    <div className="space-y-3">
+      <div className="flex justify-end">
+        <Button onClick={addNewRow} size="sm" className="gap-2">
+          <Plus className="h-4 w-4" />
+          Add New Position
+        </Button>
+      </div>
+      <ScrollArea className="w-full rounded-md border border-border">
+        <Table className="min-w-max">
         <TableHeader>
           <TableRow className="border-b border-border hover:bg-transparent">
             <TableHead className="whitespace-nowrap text-xs font-semibold uppercase tracking-wider text-muted-foreground min-w-[150px]">
