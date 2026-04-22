@@ -8,6 +8,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 
 interface PositionData {
   id: string;
@@ -166,31 +168,46 @@ export const PortfolioTable = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Simulate new row addition
+  const sampleNewRows = [
+    { instrument: "META US Equity", entity: "Social Media Fund", portfolio: "Tech Diversified" },
+    { instrument: "AMZN US Equity", entity: "E-Commerce Holdings", portfolio: "Consumer Growth" },
+    { instrument: "NFLX US Equity", entity: "Media Ventures LLC", portfolio: "Streaming Focus" },
+    { instrument: "AMD US Equity", entity: "Semiconductor Trust", portfolio: "Chip Innovation" },
+    { instrument: "INTC US Equity", entity: "Hardware Capital", portfolio: "Legacy Tech" },
+    { instrument: "ORCL US Equity", entity: "Enterprise Fund", portfolio: "Cloud Infrastructure" },
+  ];
+
+  const addNewRow = () => {
+    const sample = sampleNewRows[Math.floor(Math.random() * sampleNewRows.length)];
+    const uniqueId = `new-${Date.now()}`;
+    const newRow: PositionData = {
+      id: uniqueId,
+      instrument: sample.instrument,
+      entity: sample.entity,
+      rowId: `POS-2024-${String(Math.floor(Math.random() * 900) + 100)}`,
+      marketValue: Math.random() * 3000000 + 500000,
+      exposure: Math.random() * 3000000 + 500000,
+      expWeight: Math.random() * 15 + 1,
+      pnlDtd: (Math.random() - 0.4) * 30000,
+      pnlMtd: (Math.random() - 0.4) * 100000,
+      pnlYtd: (Math.random() - 0.3) * 400000,
+      portfolio: sample.portfolio,
+      isNew: true,
+    };
+
+    setData((prev) => [...prev, newRow]);
+
+    setTimeout(() => {
+      setData((current) =>
+        current.map((d) => (d.id === uniqueId ? { ...d, isNew: false } : d))
+      );
+    }, 1200);
+  };
+
+  // Simulate new row addition on mount
   useEffect(() => {
     const timeout = setTimeout(() => {
-      const newRow: PositionData = {
-        id: "new-1",
-        instrument: "META US Equity",
-        entity: "Social Media Fund",
-        rowId: "POS-2024-006",
-        marketValue: 1432567.89,
-        exposure: 1432567.89,
-        expWeight: 7.01,
-        pnlDtd: 8765.43,
-        pnlMtd: 34567.89,
-        pnlYtd: 87654.32,
-        portfolio: "Tech Diversified",
-        isNew: true,
-      };
-
-      setData((prev) => [...prev, newRow]);
-
-      setTimeout(() => {
-        setData((current) =>
-          current.map((d) => (d.id === newRow.id ? { ...d, isNew: false } : d))
-        );
-      }, 1200);
+      addNewRow();
     }, 5000);
 
     return () => clearTimeout(timeout);
@@ -207,8 +224,15 @@ export const PortfolioTable = () => {
   };
 
   return (
-    <ScrollArea className="w-full rounded-md border border-border">
-      <Table className="min-w-max">
+    <div className="space-y-3">
+      <div className="flex justify-end">
+        <Button onClick={addNewRow} size="sm" className="gap-2">
+          <Plus className="h-4 w-4" />
+          Add New Position
+        </Button>
+      </div>
+      <ScrollArea className="w-full rounded-md border border-border">
+        <Table className="min-w-max">
         <TableHeader>
           <TableRow className="border-b border-border hover:bg-transparent">
             <TableHead className="whitespace-nowrap text-xs font-semibold uppercase tracking-wider text-muted-foreground min-w-[150px]">
@@ -317,5 +341,6 @@ export const PortfolioTable = () => {
       </Table>
       <ScrollBar orientation="horizontal" />
     </ScrollArea>
+    </div>
   );
 };
