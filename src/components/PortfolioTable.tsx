@@ -341,5 +341,6 @@ export const PortfolioTable = () => {
       </Table>
       <ScrollBar orientation="horizontal" />
     </ScrollArea>
+    </div>
   );
 };
